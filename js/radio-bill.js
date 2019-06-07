@@ -12,16 +12,18 @@
 // * display the latest total on the screen
 
 var billItemTypeElement = document.querySelector(".billItemType");
-var radioBillSettingsAddBtn= document.querySelector(".radioBillSettingsAddBtn");
-var callTotalTwoElement= document.querySelector(".callTotalTwo");
-var smsTotalTwoElement= document.querySelector(".smsTotalTwo");
+var radioBillAddBtn = document.querySelector(".radioBillAddBtn");
+var callTotalTwoElement = document.querySelector(".callTotalTwo");
+var smsTotalTwoElement = document.querySelector(".smsTotalTwo");
 var totalTwoElement = document.querySelector(".totalTwo");
 
 var callTotalTwo =0;
 var smsTotalTwo =0;
-var totalTwo = 0;
+var totalCostSettings = 0;
 
-function radioBill(){
+
+
+function radioBillSettings(){
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
     if (checkedRadioBtn){
         var  billItemType= checkedRadioBtn.value
@@ -36,14 +38,14 @@ function radioBill(){
       //update the totals that is displayed on the screen.
       callTotalTwoElement.innerHTML =  callTotalTwo.toFixed(2);
       smsTotalTwoElement.innerHTML = smsTotalTwo.toFixed(2);
-      totalTwo = callTotalTwo + smsTotalTwo;
-     totalTwoElement.innerHTML = totalTwo.toFixed(2);
+      totalCost = callTotalTwo + smsTotalTwo;
+     totalTwoElement.innerHTML =  totalCost.toFixed(2);
      
-     if (totalTwo >= 50){
+     if (totalCost >= 50){
         // adding the danger class will make the text red
         totalTwoElement.classList.add("danger");
     }
-    else if (totalTwo >= 30){
+    else if (totalCost >= 30){
         totalTwoElement.classList.add("warning");
     }
 }
@@ -53,4 +55,4 @@ function radioBill(){
   
 // the event listener is declared below here
 
-radioBillSettingsAddBtn.addEventListener('click', radioBill);
+radioBillAddBtn.addEventListener('click', radioBillSettings);

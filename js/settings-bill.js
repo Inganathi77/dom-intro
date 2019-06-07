@@ -87,6 +87,11 @@ function radioBillSettings(){
         
         
     }
+    if (totalCost >= criticalLevel ) {
+        
+        radioBillSettingsAddBtn.disabled = true;
+    }
+
 }
 
 
@@ -113,6 +118,23 @@ function settings(){
     totalCost =  callCostSetting +  smsCostSetting;
     warningLevelSettingElem.innerHTML =  warningLevel.toFixed(2);
     warningLevelSettingElem.innerHTML = criticalLevel.toFixed(2);
+      
+    if (totalCost < criticalLevel ) {
+        
+        radioBillSettingsAddBtn.disabled = false;
+    }
+    if (totalCost >= criticalLevel ){
+        totalSettings.classList.add("danger");
+        // totalSettings.classList.remove("warning");
+    }else if (totalCost >= warningLevel ){
+        totalSettings.classList.add("warning");
+        // totalSettings.classList.remove("danger");
+    } else {
+        totalSettings.classList.remove("danger") || 
+        totalSettings.classList.remove("warning");
+        
+        
+    }
 
 }
 

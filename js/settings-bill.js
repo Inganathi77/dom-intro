@@ -61,41 +61,18 @@ function radioBillSettings(){
       totalSettings.innerHTML =  totalCost.toFixed(2);
      
     
-    //   if (totalCost >= criticalLevel ){
-    //     totalSettings.classList.add("danger");
-    //   }
-    //     else if (totalCost < criticalLevel){
-    //     totalSettings.classList.remove("danger");
-    // }
-    // else if (totalCost >= warningLevel ){
-    //     totalSettings.classList.add("warning");
-    // }
-    // else if (totalCost< warningLevel){
-    //     totalSettings.classList.remove("warning");
-    // } 
-    // }
 
-    if (totalCost >= criticalLevel ){
-        totalSettings.classList.add("danger");
-        // totalSettings.classList.remove("warning");
-    }else if (totalCost >= warningLevel ){
+   if (totalCost >= warningLevel ){
         totalSettings.classList.add("warning");
-        // totalSettings.classList.remove("danger");
-    } else {
-        totalSettings.classList.remove("danger") || 
+         totalSettings.classList.remove("danger");
+    } 
+    if (totalCost >= criticalLevel){
         totalSettings.classList.remove("warning");
-        
-        
-    }
-    if (totalCost >= criticalLevel ) {
-        
+        totalSettings.classList.add("danger");
         radioBillSettingsAddBtn.disabled = true;
-    }
-
+    } 
+    
 }
-
-
-
     //color the total based billTypeText
    
   
@@ -103,40 +80,26 @@ function radioBillSettings(){
 
 radioBillSettingsAddBtn.addEventListener('click', radioBillSettings);
 
-
-
 function settings(){
-  
-    
+   
     callCostSetting = Number(callCostSettingElem.value);
     smsCostSetting = Number(smsCostingSettingElem.value);
     warningLevel = Number(warningLevelSettingElem.value);
     criticalLevel =  Number(criticalLevelSettingElem.value);
 
-    callCostSettingElem.innerHTML = callCostSetting.toFixed(2);
-    smsCostingSettingElem.innerHTML =  smsCostSetting.toFixed(2);
-    totalCost =  callCostSetting +  smsCostSetting;
-    warningLevelSettingElem.innerHTML =  warningLevel.toFixed(2);
-    warningLevelSettingElem.innerHTML = criticalLevel.toFixed(2);
-      
-    if (totalCost < criticalLevel ) {
-        
+    if(updateSettings) {
         radioBillSettingsAddBtn.disabled = false;
-    }
-    if (totalCost >= criticalLevel ){
-        totalSettings.classList.add("danger");
-        // totalSettings.classList.remove("warning");
-    }else if (totalCost >= warningLevel ){
-        totalSettings.classList.add("warning");
-        // totalSettings.classList.remove("danger");
-    } else {
-        totalSettings.classList.remove("danger") || 
         totalSettings.classList.remove("warning");
-        
-        
+        totalSettings.classList.remove("danger");
+        if(totalCost >= criticalLevel){
+            totalSettings.classList.add("danger");
+          
+        }
+        if(totalCost >= warningLevel){
+            totalSettings.classList.add("warning");
+        }
+      
+       }
     }
-
-}
-
-
+       
 updateSettings.addEventListener('click', settings);
